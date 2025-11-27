@@ -36,17 +36,35 @@ const CalendarView = () => {
     const desk = desks.find(d => d.id === selectedDesk);
     if (!desk) return;
 
-    const newBooking: Booking = {
-      id: `booking-${Date.now()}`,
-      deskId: selectedDesk,
-      deskNumber: desk.number,
-      date: selectedDate,
-      userId: "current-user",
-      userName: "You",
-    };
+    // Check if user already has a booking for this date
+    const existingBookingIndex = bookings.findIndex(
+      b => b.userId === "current-user" && isSameDay(b.date, selectedDate)
+    );
 
-    setBookings([...bookings, newBooking]);
-    toast.success(`Desk ${desk.number} booked for ${format(selectedDate, "PPP")}`);
+    if (existingBookingIndex !== -1) {
+      // Update existing booking
+      const updatedBookings = [...bookings];
+      updatedBookings[existingBookingIndex] = {
+        ...updatedBookings[existingBookingIndex],
+        deskId: selectedDesk,
+        deskNumber: desk.number,
+      };
+      setBookings(updatedBookings);
+      toast.success(`Booking updated to Desk ${desk.number} for ${format(selectedDate, "PPP")}`);
+    } else {
+      // Create new booking
+      const newBooking: Booking = {
+        id: `booking-${Date.now()}`,
+        deskId: selectedDesk,
+        deskNumber: desk.number,
+        date: selectedDate,
+        userId: "current-user",
+        userName: "You",
+      };
+      setBookings([...bookings, newBooking]);
+      toast.success(`Desk ${desk.number} booked for ${format(selectedDate, "PPP")}`);
+    }
+    
     setSelectedDesk("");
   };
 
