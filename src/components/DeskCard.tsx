@@ -2,8 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Monitor, User } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-export type DeskStatus = "available" | "occupied" | "reserved";
+import { DeskStatus } from "@/types/desk";
 
 interface DeskCardProps {
   deskNumber: string;

@@ -1,12 +1,6 @@
-import { DeskCard, DeskStatus } from "./DeskCard";
+import { DeskCard } from "./DeskCard";
+import { Desk } from "@/types/desk";
 import { toast } from "sonner";
-
-interface Desk {
-  id: string;
-  number: string;
-  status: DeskStatus;
-  occupant?: string;
-}
 
 interface DeskGridProps {
   desks: Desk[];
