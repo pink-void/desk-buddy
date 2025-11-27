@@ -1,5 +1,5 @@
-const { test, expect } = require('@playwright/test');
-const { DeskBuddyPage } = require('../pages/DeskBuddyPage'); 
+import { test, expect } from '@playwright/test';
+import { DeskBuddyPage } from '../pages/DeskBuddyPage.js';
 
 test.describe('Desk Buddy Task Tracker Functionality', () => {
     

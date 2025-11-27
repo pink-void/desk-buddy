@@ -1,10 +1,10 @@
-const { expect } = require('@playwright/test');
+import { expect } from '@playwright/test';
 
 /**
  * Page Object for the Desk Buddy application.
  * Encapsulates locators and interaction methods for the Project/Task Tracker.
  */
-class DeskBuddyPage {
+export class DeskBuddyPage {
     /**
      * @param {import('@playwright/test').Page} page
      */
@@ -42,5 +42,3 @@ class DeskBuddyPage {
         await this.addButton.click();
     }
 }
-
-module.exports = { DeskBuddyPage };
